@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="page-header text-center">
+                <h1>My Recipes</h1>
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <input type="text" id="recipe-name" class="form-control" placeholder="Recipe Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="recipe-image" class="form-control" placeholder="Recipe Image">
+                </div>
+
+                <button class="btn btn-primary add-recipe" type="button">Add a Recipe</button>
+            </form>
+
+            <hr>
+        </div>
+    </div>
+
+    <div class="recipes row">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<script id="recipes-template" type="text/x-handlebars-template">
+    {{#each recipes}}
+    <div class="recipe col-md-6  offset-md-3 img-fluid shadow" data-id="{{id}}"> 
+        <h4 class="text-capitalize font-italic text-center"> {{name}}</h4>
+        <img class="recipe-img" src="{{image}}"/>
+        <hr>
+        <h5 class="font-italic font-bold text-center">ingredients</h5>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="add-ingredients input-group-text" id="basic-addon3">Add Ingredients</span>
+            </div>
+            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+            
+        </div>
+        <ul class="ingredients"> 
+            {{#each ingredients}} 
+            <li class='ingredien'>{{name}}<button type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span>REMOVE</button></li>
+            {{/each}}</ul>
+    </div>
+</script>
