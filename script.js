@@ -5,9 +5,9 @@ var RecipeApp = function () {
             name: 'Best Chicken Soup!', 
             image: 'https://static01.nyt.com/images/2016/11/29/dining/recipelab-chick-noodle-still/recipelab-chick-noodle-still-master675.jpg',
             ingredients: [
-                { name: 'whole chicken' },
-                { name: 'medium carrots'},
-                { name: 'onions' },
+                { name: 'whole chicken', id: 0},
+                { name: 'medium carrots', id: 1},
+                { name: 'onions', id: 2 },
             ] 
         }
     ];
@@ -17,7 +17,7 @@ var RecipeApp = function () {
     var recId = 2;
 
     //id's for ingredients
-    var ingId = 0;
+    var ingId =3;
 
     var createRecipe = function(name, link){
         var recipe = {
@@ -29,18 +29,16 @@ var RecipeApp = function () {
 
         //keeps recipe ids unique 
         recId ++; 
-        ingId = 0; //updating IngId with New Recipe
         recipes.push(recipe);
     };
     
     var createIngredients = function(index, text){
+         //keeps recipe ids unique 
+        ingId= app.recipes[index].ingredients.length; 
         var ingredient = {
-            id: ingId,
-            name: text
+            name: text,
+            id: ingId
         };
-
-        //keeps recipe ids unique 
-        ingId ++; 
         app.recipes[index].ingredients.push(ingredient);
     };
     var renderRecipes = function () {
@@ -50,7 +48,7 @@ var RecipeApp = function () {
         var template = Handlebars.compile(source);
         var newHTML = template(this);
         $('.list').append(newHTML); 
-        bindEvents(); bindEventsDelete()
+        bindEvents(); bindEventsDelete();
         };
     return {
         recipes: recipes,
@@ -91,8 +89,8 @@ var findRecipeById = function (id) {
 
 $('.add-recipe').on('click',function () {
     var name = $('#recipe-name').val();
-    var link='https://static01.nyt.com/images/2016/11/29/dining/recipelab-chick-noodle-still/recipelab-chick-noodle-still-master675.jpg';
-    var image = link;//$('#recipe-image').val();
+    var link = $('#recipe-image').val();
+    console.log(link);
     //add recipe to array and render
     app.createRecipe(name, link);
     app.renderRecipes();

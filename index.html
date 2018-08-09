@@ -17,7 +17,7 @@
                     <input type="text" id="recipe-name" class="form-control" placeholder="Recipe Name">
                 </div>
                 <div class="form-group">
-                    <input type="text" id="recipe-image" class="form-control" placeholder="Recipe Image">
+                    <input type="text" id="recipe-image" class="form-control" placeholder="Link to recipe Image">
                 </div>
 
                 <button class="btn btn-primary add-recipe" type="button">Add a Recipe</button>
@@ -46,7 +46,7 @@
        
             <ul class="ingredients"> 
                 {{#each ingredients}} 
-                <li class='ingredien'>{{name}}<button type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;REMOVE</button></li>
+                <li class='ingredient' data-id="{{id}}">{{name}}<button type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;REMOVE</button></li>
                 {{/each}}
             </ul>
             
